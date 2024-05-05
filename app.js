@@ -9,8 +9,12 @@ app.use(express.static("./public"));
 app.use(express.json());
 
 //routes
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).send(`<h1>Mantaro Api</h1>`);
+});
+
+app.use((req, res) => {
+  res.status(404).send("does not exist");
 });
 
 //connect to MongoDB and listen on port
