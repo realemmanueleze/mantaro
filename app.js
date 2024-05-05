@@ -10,7 +10,7 @@ app.use(express.json());
 
 //routes
 app.use("/", (req, res) => {
-  res.status(200).send(<h1>Mantaro Api</h1>);
+  res.status(200).send(`<h1>Mantaro Api</h1>`);
 });
 
 //connect to MongoDB and listen on port
