@@ -1,0 +1,32 @@
+{
+  "name": "mantaro-api",
+  "version": "1.0.0",
+  "description": "e-commerce platform for a mantara fashion brand",
+  "main": "app.js",
+  "scripts": {
+    "test": "test",
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/realemmanueleze/mantaro-api.git"
+  },
+  "keywords": [
+    "fashion",
+    "ecommerce"
+  ],
+  "author": "Emmanuel Eze",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/realemmanueleze/mantaro-api/issues"
+  },
+  "homepage": "https://github.com/realemmanueleze/mantaro-api#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "mongoose": "^8.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
