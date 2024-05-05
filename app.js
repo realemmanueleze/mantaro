@@ -1,20 +1,32 @@
 require("dotenv").config();
+require("express-async-errors");
+
+//express
 const express = require("express");
+const app = express();
+
+// other packages
+const morgan = require("morgan");
+
+// database
 const connectDB = require("./db/connectDB");
 
+//routes
+const authRoute = require("./routes/authRoute");
+
+//middleware
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
-const app = express();
-
-//middleware
 app.use(express.static("./public"));
 app.use(express.json());
 
-//routes
+app.use(morgan("tiny"));
+
 app.get("/", (req, res) => {
   res.status(200).send(`<h1>Mantaro Api</h1>`);
 });
+app.use("/api/auth", authRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
