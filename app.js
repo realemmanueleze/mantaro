@@ -4,8 +4,17 @@ const connectDB = require("./db/connectDB");
 
 const app = express();
 
-const port = process.env.PORT || 5000;
+//middleware
+app.use(express.static("./public"));
+app.use(express.json());
 
+//routes
+app.use("/", (req, res) => {
+  res.status(200).send(<h1>Mantaro Api</h1>);
+});
+
+//connect to MongoDB and listen on port
+const port = process.env.PORT || 5000;
 const start = async () => {
   try {
     await connectDB(process.env.MONGODB_URI);
