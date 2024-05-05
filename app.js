@@ -1,17 +1,24 @@
 require("dotenv").config();
+require("express-async-errors");
+
+//express
 const express = require("express");
+const app = express();
+
+//other packages
+
+//database
 const connectDB = require("./db/connectDB");
 
+//routes
+
+//middleware
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
-const app = express();
-
-//middleware
 app.use(express.static("./public"));
 app.use(express.json());
 
-//routes
 app.get("/", (req, res) => {
   res.status(200).send(`<h1>Mantaro Api</h1>`);
 });
