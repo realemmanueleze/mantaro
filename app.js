@@ -2,7 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const connectDB = require("./db/connectDB");
 
-const notFoundMiddleware = require("./middleware/notFound");
+const notFoundMiddleware = require("./middleware/not-found");
+const errorHandlerMiddleware = require("./middleware/error-handler");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 //connect to MongoDB and listen on port
 const port = process.env.PORT || 5000;
