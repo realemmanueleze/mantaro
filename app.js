@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const connectDB = require("./db/connectDB");
 
+const notFoundMiddleware = require("./middleware/notFound");
+
 const app = express();
 
 //middleware
@@ -13,9 +15,7 @@ app.get("/", (req, res) => {
   res.status(200).send(`<h1>Mantaro Api</h1>`);
 });
 
-app.use((req, res) => {
-  res.status(404).send("does not exist");
-});
+app.use(notFoundMiddleware);
 
 //connect to MongoDB and listen on port
 const port = process.env.PORT || 5000;
