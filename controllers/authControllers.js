@@ -49,7 +49,12 @@ const login = async (req, res, next) => {
 };
 
 const logout = async (req, res, next) => {
-  res.send("Logout");
+  res.cookie("token", "logout", {
+    httpOnly: true,
+    expires: new Date(Date.now()),
+  });
+
+  res.status(StatusCodes.OK).send("User successfully logged out");
 };
 
 module.exports = {
