@@ -8,3 +8,10 @@ const createToken = (payload) => {
 
   return token;
 };
+
+const isTokenValid = ({ token }) => jwt.verify(token, process.env.JWT_SECRET);
+
+module.exports = {
+  createToken,
+  isTokenValid,
+};
