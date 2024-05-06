@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const { StatusCodes } = require("http-status-codes");
 const CustomError = require("../errors/index");
+const { createTokenUser, attachCookiesToResponse } = require("../utils");
 
 const register = async (req, res, next) => {
   const { email, name, password } = req.body;
@@ -9,10 +10,12 @@ const register = async (req, res, next) => {
   if (emailAlreadyExist) {
     throw new CustomError.BadRequestError("User with email already exists");
   }
-
   // only support default user role : "user"
   const user = await User.create({ email, name, password });
-  res.status(StatusCodes.CREATED).json({ data: user });
+
+  const tokenUser = createTokenUser(user);
+  attachCookiesToResponse({ res, user: tokenUser });
+  res.status(StatusCodes.CREATED).json({ user: tokenUser });
 };
 
 const login = async (req, res, next) => {

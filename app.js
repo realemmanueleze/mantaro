@@ -7,6 +7,7 @@ const app = express();
 
 // other packages
 const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
 
 // database
 const connectDB = require("./db/connectDB");
@@ -20,6 +21,7 @@ const errorHandlerMiddleware = require("./middleware/error-handler");
 
 app.use(express.static("./public"));
 app.use(express.json());
+app.use(cookieParser(process.env.COOKIE_PARSER_SECRET));
 
 app.use(morgan("tiny"));
 
