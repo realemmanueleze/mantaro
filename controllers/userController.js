@@ -8,7 +8,7 @@ const getAllUsers = async (req, res, next) => {
 };
 
 const getCurrentUser = async (req, res, next) => {
-  res.send("Current user");
+  res.status(StatusCodes.OK).json({ user: req.user });
 };
 const getSingleUser = async (req, res, next) => {
   res.send("Single user");
