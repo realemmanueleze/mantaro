@@ -6,10 +6,14 @@ const {
   updateUser,
   updatePassword,
 } = require("../controllers/userController");
+const {
+  authenticateUser,
+  authorizePermissions,
+} = require("../middleware/authentication");
 
 const router = Router();
 
-router.get("/", getAllUsers);
+router.get("/", authenticateUser, authorizePermissions("admin"), getAllUsers);
 router.get("/showMe", getCurrentUser);
 router.patch("/updateUser", updateUser);
 router.post("/updatePassword", updatePassword);

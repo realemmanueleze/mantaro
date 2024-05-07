@@ -1,19 +1,23 @@
-const { NOT_MODIFIED } = require("http-status-codes");
+const { StatusCodes } = require("http-status-codes");
+const User = require("../models/user");
+const CustomError = require("../errors");
 
-const getAllUsers = (req, res, next) => {
-  res.send("All users");
+const getAllUsers = async (req, res, next) => {
+  const users = await User.find({}).select(["-password"]);
+  res.send(users);
 };
-const getCurrentUser = (req, res, next) => {
-  res.send("Current users");
+
+const getCurrentUser = async (req, res, next) => {
+  res.send("Current user");
 };
-const getSingleUser = (req, res, next) => {
+const getSingleUser = async (req, res, next) => {
   res.send("Single user");
 };
-const updateUser = (req, res, next) => {
-  res.send("All users");
+const updateUser = async (req, res, next) => {
+  res.send("Updated User");
 };
-const updatePassword = (req, res, next) => {
-  res.send("All users");
+const updatePassword = async (req, res, next) => {
+  res.send("Password updated");
 };
 
 module.exports = {
