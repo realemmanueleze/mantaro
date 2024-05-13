@@ -66,7 +66,7 @@ const ProductSchema = mongoose.Schema(
       required: true,
     },
   },
-  { timestamp: true }
+  { timestamp: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
 ProductSchema.virtual("reviews", {
